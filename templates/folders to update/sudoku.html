@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="post" />
+
+<div style="height:50px;width:500px;margin:0 auto;margin-top:50px">
+    <h2>
+        <ul name="sudoku_levels">
+            <li name="sudoku_level"><a href="/sudoku/levels?level=1">Easy</a></li>
+            <li name="sudoku_level"><a href="/sudoku/levels?level=2">Medium</a></li>
+            <li name="sudoku_level"><a href="/sudoku/levels?level=3">Hard</a></li>
+            <li name="sudoku_level"><a href="/sudoku">User Generated</a></li>
+        </ul>
+    </h2>
+</div>
+
+{% if error or congratulations %}
+    <div style="height:50px;width:500px;margin:0 auto;margin-top:50px">
+        <h2>{{error}}{{congratulations}} {{solve_time}}</h2>
+    </div>
+{% endif %}
+<div style="height:350px;width:325px;margin:0 auto;margin-top:50px">
+    <table name="sudoku_table" cellspacing="0" cellpadding="0">
+    {% for i in range(9) %}
+        <tr>
+        {% for j in range(9) %}
+            <td><input size="2" autocomplete="off" maxlength="1" name="{{grid['name'][i][j]}}" id="{{grid['id'][i][j]}}" {{grid['readonly'][i][j]}} value="{{grid['value'][i][j]}}" style="{{grid['html'][i][j]}}"/></td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+    {% if level %}
+        <input type="submit" name="check_btn" value="Check" />
+        <input type="submit" name="clear_btn" value="Clear" />
+        <input type="submit" name="solve_btn" value="Solve" />
+        <input type="submit" name="new_btn" value="New Puzzle" /><br />
+        {% if wrong %}
+            Number wrong {{wrong}}<br />
+        {% endif %}
+        {% if missing %}
+            Number missing {{missing}}<br />
+        {% endif %}
+
+        <input type="hidden" name="solution_string" value="{{solution_string}}" />
+        <input type="hidden" name="grid_string" value="{{grid_string}}" />
+        <input type="hidden" name="level_string" value="{{level}}" />
+        <input type="hidden" name="start_time" value="{{start_time}}" />
+    {% else %}
+        <input type="submit" name="solve_btn" value="solve" />
+        <input type="submit" name="clear_btn" value="clear" />
+        {{difficulty}}
+    {% endif %}
+</div>
+{% endblock %}

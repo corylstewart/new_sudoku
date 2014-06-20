@@ -1,0 +1,88 @@
+body, td
+{
+	font-family: arial, sans-serif;
+	color: black;
+	font-size: 9pt;
+}
+
+.s_table
+{
+	border-collapse: collapse;
+	background-color: white;
+	border-right:  black;
+}
+
+table, td
+{
+	padding: 0pt;
+}
+
+.topleft
+{
+	border-top: black solid 2px;
+	border-left: black solid 2px;
+}
+
+.topmidl
+{
+	border-top: black solid 2px;
+}
+
+.toprght
+{
+	border-top: black solid 2px;
+	border-right: black solid 2px;
+}
+
+.midleft
+{
+	border-left: black solid 2px;
+}
+
+.midrght
+{
+	border-right: black solid 2px;
+}
+
+.botleft
+{
+	border-bottom: black solid 2px;
+	border-left: black solid 2px;
+}
+
+.botmidl
+{
+	border-bottom: black solid 2px;
+}
+
+.botrght
+{
+	border-bottom: black solid 2px;
+	border-right: black solid 2px;
+}
+
+.full_cell
+{
+	width: 24pt;
+	height: 25pt;
+	margin: 0;
+	text-align: center;
+	border: solid thin blue;
+	outline: none;
+	color: black;
+	font-family: 'Times New Roman', serif;
+	font-size: 16pt;
+	background-color: transparent;
+}
+
+.emptycell
+{
+	width: 24pt;
+	height: 25pt;	text-align: center;
+	border: solid thin blue;
+	outline: none;
+	font-family: Verdana, 'Trebuchet MS';
+	font-size: 14pt;
+	color: blueviolet;
+	background-color: transparent;
+}

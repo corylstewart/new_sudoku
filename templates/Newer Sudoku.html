@@ -1,0 +1,159 @@
+<html>
+    <head>
+        <title>Cory's Sudoku Page</title>
+        <link type="text/css" rel="stylesheet" href="/static/sudoku.css" />
+        <script lang="JavaScript">
+            var puzzle_soultion = {{puzzle_solution}}
+            var puzzle = {{puzzle}}
+
+        </script>
+
+    </head>
+
+    <body>
+        <p>
+            {% if level != 'easy' %}
+                <a href="/sudoku/?level=easy">Easy</a>
+            {% else %}
+                Easy
+            {% endif %}
+
+            {% if level != 'medium' %}
+                <a href="/sudoku/?level=medium">Medium</a>
+            {% else %}
+                Medium
+            {% endif %}
+
+            {% if level != 'hard' %}
+                <a href="/sudoku/?level=hard">Hard</a>
+            {% else %}
+                Hard
+            {% endif %}
+            
+            {% if level != 'user' %}
+                <a href="/sudoku/?level=user">User Generated</a>
+            {% else %}
+                User Generated
+            {% endif %}
+            
+        </p>
+
+        <table cellspacing="0" cellpadding="0" class="s_table">
+				<tbody>
+	            <tr>
+	                <td {{ca00}} id="td00"><input {{cb00}} size="2" autocomplete="off" {{celltype00}} id="in00" /></td>
+	                <td {{ca01}} id="td01"><input {{cb01}} size="2" autocomplete="off" {{celltype01}} id="in01" /></td>
+	                <td {{ca02}} id="td02"><input {{cb02}} size="2" autocomplete="off" {{celltype02}} id="in02" /></td>
+	                <td {{ca03}} id="td03"><input {{cb03}} size="2" autocomplete="off" {{celltype03}} id="in03" /></td>
+	                <td {{ca04}} id="td04"><input {{cb04}} size="2" autocomplete="off" {{celltype04}} id="in04" /></td>
+	                <td {{ca05}} id="td05"><input {{cb05}} size="2" autocomplete="off" {{celltype05}} id="in05" /></td>
+	                <td {{ca06}} id="td06"><input {{cb06}} size="2" autocomplete="off" {{celltype06}} id="in06" /></td>
+	                <td {{ca07}} id="td07"><input {{cb07}} size="2" autocomplete="off" {{celltype07}} id="in07" /></td>
+	                <td {{ca08}} id="td08"><input {{cb08}} size="2" autocomplete="off" {{celltype08}} id="in08" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca10}} id="td10"><input {{cb10}} size="2" autocomplete="off" {{celltype10}} id="in10" /></td>
+	                <td {{ca11}} id="td11"><input {{cb11}} size="2" autocomplete="off" {{celltype11}} id="in11" /></td>
+	                <td {{ca12}} id="td12"><input {{cb12}} size="2" autocomplete="off" {{celltype12}} id="in12" /></td>
+	                <td {{ca13}} id="td13"><input {{cb13}} size="2" autocomplete="off" {{celltype13}} id="in13" /></td>
+	                <td {{ca14}} id="td14"><input {{cb14}} size="2" autocomplete="off" {{celltype14}} id="in14" /></td>
+	                <td {{ca15}} id="td15"><input {{cb15}} size="2" autocomplete="off" {{celltype15}} id="in15" /></td>
+	                <td {{ca16}} id="td16"><input {{cb16}} size="2" autocomplete="off" {{celltype16}} id="in16" /></td>
+	                <td {{ca17}} id="td17"><input {{cb17}} size="2" autocomplete="off" {{celltype17}} id="in17" /></td>
+	                <td {{ca18}} id="td18"><input {{cb18}} size="2" autocomplete="off" {{celltype18}} id="in18" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca20}} id="td20"><input {{cb20}} size="2" autocomplete="off" {{celltype20}} id="in20" /></td>
+	                <td {{ca21}} id="td21"><input {{cb21}} size="2" autocomplete="off" {{celltype21}} id="in21" /></td>
+	                <td {{ca22}} id="td22"><input {{cb22}} size="2" autocomplete="off" {{celltype22}} id="in22" /></td>
+	                <td {{ca23}} id="td23"><input {{cb23}} size="2" autocomplete="off" {{celltype23}} id="in23" /></td>
+	                <td {{ca24}} id="td24"><input {{cb24}} size="2" autocomplete="off" {{celltype24}} id="in24" /></td>
+	                <td {{ca25}} id="td25"><input {{cb25}} size="2" autocomplete="off" {{celltype25}} id="in25" /></td>
+	                <td {{ca26}} id="td26"><input {{cb26}} size="2" autocomplete="off" {{celltype26}} id="in26" /></td>
+	                <td {{ca27}} id="td27"><input {{cb27}} size="2" autocomplete="off" {{celltype27}} id="in27" /></td>
+	                <td {{ca28}} id="td28"><input {{cb28}} size="2" autocomplete="off" {{celltype28}} id="in28" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca30}} id="td30"><input {{cb30}} size="2" autocomplete="off" {{celltype30}} id="in30" /></td>
+	                <td {{ca31}} id="td31"><input {{cb31}} size="2" autocomplete="off" {{celltype31}} id="in31" /></td>
+	                <td {{ca32}} id="td32"><input {{cb32}} size="2" autocomplete="off" {{celltype32}} id="in32" /></td>
+	                <td {{ca33}} id="td33"><input {{cb33}} size="2" autocomplete="off" {{celltype33}} id="in33" /></td>
+	                <td {{ca34}} id="td34"><input {{cb34}} size="2" autocomplete="off" {{celltype34}} id="in34" /></td>
+	                <td {{ca35}} id="td35"><input {{cb35}} size="2" autocomplete="off" {{celltype35}} id="in35" /></td>
+	                <td {{ca36}} id="td36"><input {{cb36}} size="2" autocomplete="off" {{celltype36}} id="in36" /></td>
+	                <td {{ca37}} id="td37"><input {{cb37}} size="2" autocomplete="off" {{celltype37}} id="in37" /></td>
+	                <td {{ca38}} id="td38"><input {{cb38}} size="2" autocomplete="off" {{celltype38}} id="in38" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca40}} id="td40"><input {{cb40}} size="2" autocomplete="off" {{celltype40}} id="in40" /></td>
+	                <td {{ca41}} id="td41"><input {{cb41}} size="2" autocomplete="off" {{celltype41}} id="in41" /></td>
+	                <td {{ca42}} id="td42"><input {{cb42}} size="2" autocomplete="off" {{celltype42}} id="in42" /></td>
+	                <td {{ca43}} id="td43"><input {{cb43}} size="2" autocomplete="off" {{celltype43}} id="in43" /></td>
+	                <td {{ca44}} id="td44"><input {{cb44}} size="2" autocomplete="off" {{celltype44}} id="in44" /></td>
+	                <td {{ca45}} id="td45"><input {{cb45}} size="2" autocomplete="off" {{celltype45}} id="in45" /></td>
+	                <td {{ca46}} id="td46"><input {{cb46}} size="2" autocomplete="off" {{celltype46}} id="in46" /></td>
+	                <td {{ca47}} id="td47"><input {{cb47}} size="2" autocomplete="off" {{celltype47}} id="in47" /></td>
+	                <td {{ca48}} id="td48"><input {{cb48}} size="2" autocomplete="off" {{celltype48}} id="in48" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca50}} id="td50"><input {{cb50}} size="2" autocomplete="off" {{celltype50}} id="in50" /></td>
+	                <td {{ca51}} id="td51"><input {{cb51}} size="2" autocomplete="off" {{celltype51}} id="in51" /></td>
+	                <td {{ca52}} id="td52"><input {{cb52}} size="2" autocomplete="off" {{celltype52}} id="in52" /></td>
+	                <td {{ca53}} id="td53"><input {{cb53}} size="2" autocomplete="off" {{celltype53}} id="in53" /></td>
+	                <td {{ca54}} id="td54"><input {{cb54}} size="2" autocomplete="off" {{celltype54}} id="in54" /></td>
+	                <td {{ca55}} id="td55"><input {{cb55}} size="2" autocomplete="off" {{celltype55}} id="in55" /></td>
+	                <td {{ca56}} id="td56"><input {{cb56}} size="2" autocomplete="off" {{celltype56}} id="in56" /></td>
+	                <td {{ca57}} id="td57"><input {{cb57}} size="2" autocomplete="off" {{celltype57}} id="in57" /></td>
+	                <td {{ca58}} id="td58"><input {{cb58}} size="2" autocomplete="off" {{celltype58}} id="in58" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca60}} id="td60"><input {{cb60}} size="2" autocomplete="off" {{celltype60}} id="in60" /></td>
+	                <td {{ca61}} id="td61"><input {{cb61}} size="2" autocomplete="off" {{celltype61}} id="in61" /></td>
+	                <td {{ca62}} id="td62"><input {{cb62}} size="2" autocomplete="off" {{celltype62}} id="in62" /></td>
+	                <td {{ca63}} id="td63"><input {{cb63}} size="2" autocomplete="off" {{celltype63}} id="in63" /></td>
+	                <td {{ca64}} id="td64"><input {{cb64}} size="2" autocomplete="off" {{celltype64}} id="in64" /></td>
+	                <td {{ca65}} id="td65"><input {{cb65}} size="2" autocomplete="off" {{celltype65}} id="in65" /></td>
+	                <td {{ca66}} id="td66"><input {{cb66}} size="2" autocomplete="off" {{celltype66}} id="in66" /></td>
+	                <td {{ca67}} id="td67"><input {{cb67}} size="2" autocomplete="off" {{celltype67}} id="in67" /></td>
+	                <td {{ca68}} id="td68"><input {{cb68}} size="2" autocomplete="off" {{celltype68}} id="in68" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca70}} id="td70"><input {{cb70}} size="2" autocomplete="off" {{celltype70}} id="in70" /></td>
+	                <td {{ca71}} id="td71"><input {{cb71}} size="2" autocomplete="off" {{celltype71}} id="in71" /></td>
+	                <td {{ca72}} id="td72"><input {{cb72}} size="2" autocomplete="off" {{celltype72}} id="in72" /></td>
+	                <td {{ca73}} id="td73"><input {{cb73}} size="2" autocomplete="off" {{celltype73}} id="in73" /></td>
+	                <td {{ca74}} id="td74"><input {{cb74}} size="2" autocomplete="off" {{celltype74}} id="in74" /></td>
+	                <td {{ca75}} id="td75"><input {{cb75}} size="2" autocomplete="off" {{celltype75}} id="in75" /></td>
+	                <td {{ca76}} id="td76"><input {{cb76}} size="2" autocomplete="off" {{celltype76}} id="in76" /></td>
+	                <td {{ca77}} id="td77"><input {{cb77}} size="2" autocomplete="off" {{celltype77}} id="in77" /></td>
+	                <td {{ca78}} id="td78"><input {{cb78}} size="2" autocomplete="off" {{celltype78}} id="in78" /></td>
+	            </tr>
+	            <tr>
+	                <td {{ca80}} id="td80"><input {{cb80}} size="2" autocomplete="off" {{celltype80}} id="in80" /></td>
+	                <td {{ca81}} id="td81"><input {{cb81}} size="2" autocomplete="off" {{celltype81}} id="in81" /></td>
+	                <td {{ca82}} id="td82"><input {{cb82}} size="2" autocomplete="off" {{celltype82}} id="in82" /></td>
+	                <td {{ca83}} id="td83"><input {{cb83}} size="2" autocomplete="off" {{celltype83}} id="in83" /></td>
+	                <td {{ca84}} id="td84"><input {{cb84}} size="2" autocomplete="off" {{celltype84}} id="in84" /></td>
+	                <td {{ca85}} id="td85"><input {{cb85}} size="2" autocomplete="off" {{celltype85}} id="in85" /></td>
+	                <td {{ca86}} id="td86"><input {{cb86}} size="2" autocomplete="off" {{celltype86}} id="in86" /></td>
+	                <td {{ca87}} id="td87"><input {{cb87}} size="2" autocomplete="off" {{celltype87}} id="in87" /></td>
+	                <td {{ca88}} id="td88"><input {{cb88}} size="2" autocomplete="off" {{celltype88}} id="in88" /></td>
+	            </tr>
+
+				</tbody>
+        </table>
+        <p style="margin-top:10pt;">
+        {% if level != 'user_gen' %}           
+            <input name="check_btn" type="submit" value="Check Progress" />
+            <input name="clear_btn" type="submit" value="Clear Board" />
+            <input name="new_puzzle_btn" type="submit" value="New Puzzle" />
+            <input name="show_solution_btn" type="submit" value="Show Solution"
+        {% else %}
+            <input name="solve_btn" type="submit" value="Solve Puzzle" />
+            <input name="clear_btn" type="submit" value="Clear Board" />
+            <input name="puzzle_string_btn" type="submit" value="Enter Puzzle as String" />
+        {% endif %}
+        </p>   
+    </body>
+
+</html>

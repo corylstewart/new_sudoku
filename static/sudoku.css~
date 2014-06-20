@@ -1,0 +1,27 @@
+body, td
+{
+	font-family: arial, sans-serif;
+	color: black;
+	font-size: 9pt;
+}
+
+
+
+
+
+
+.topleft
+{
+	border-top: black solid 2px;
+	border-left: black solid 2px;
+}
+
+.topmidl
+{
+	border-top: black solid 2px;
+}
+
+.midleft
+{
+	border-left: black solid 2px;
+}

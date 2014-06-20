@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Cory's Demo Page</title>
+</head>
+
+<body>
+    <!-- <div class="main-title"> Welcome to my Demo Page </div> -->
+    
+    <div class="login-area">
+        {% if user and user != 'base' %}
+        {{user}}(<a class="login-link" href="/logout">logout</a>)
+        {% else %}
+        <a class="login-link" href="/login">login</a>
+        |
+        <a class="login-link" href="/signup">signup</a>
+        {% endif %}
+    </div>
+
+    <div id="header">
+        <div id="navbar">
+            <ul id="tabs">
+                <li id="tabs"><a href="/">Home</a></li>
+                <li id="tabs"><a href="/resume">About Me</a></li>
+                <li id="tabs"><a href="/optionposition">Option Model</a></li>
+                <li id="tabs"><a href="/sudoku">Sudoku</a></li>
+                <li id="tabs"><a href="https://github.com/corylstewart?tab=repositories">Code</a></li>
+                {% if user == 'admin' %}
+                    <li id="tabs"><a href="/sudoku/db">Sudoku Database</a></li>
+                    <li id="tabs"><a href="/optiondatabase">Option Database</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+  <div id="content">
+  {% block content %}
+  {% endblock %}
+  </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
