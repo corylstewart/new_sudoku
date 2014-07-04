@@ -1,4 +1,4 @@
-body, td
+td
 {
 	font-family: arial, sans-serif;
 	color: black;
@@ -10,6 +10,13 @@ body, td
 	border-collapse: collapse;
 	background-color: white;
 	border-right:  black;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+p.center
+{
+	text-align: center;
 }
 
 table, td
@@ -67,7 +74,10 @@ table, td
 	height: 25pt;
 	margin: 0;
 	text-align: center;
-	border: solid thin blue;
+	border-bottom: solid thin blue;
+	border-right: solid thin blue;
+	border-top:none;
+	border-left:none;
 	outline: none;
 	color: black;
 	font-family: 'Times New Roman', serif;
@@ -79,10 +89,43 @@ table, td
 {
 	width: 24pt;
 	height: 25pt;	text-align: center;
-	border: solid thin blue;
+	border-bottom: solid thin blue;
+	border-right: solid thin blue;
+	border-top:none;
+	border-left:none;
 	outline: none;
 	font-family: Verdana, 'Trebuchet MS';
 	font-size: 14pt;
 	color: blueviolet;
 	background-color: transparent;
+}
+
+.wrongcell
+{
+	width: 24pt;
+	height: 25pt;	text-align: center;
+	border-bottom: solid thin blue;
+	border-right: solid thin blue;
+	border-top:none;
+	border-left:none;
+	outline: none;
+	font-family: Verdana, 'Trebuchet MS';
+	font-size: 14pt;
+	color: red;
+	background-color: transparent;
+}
+
+
+#in02, #in12, #in22, #in32, #in42, #in52, #in62, #in72, #in82,
+#in05, #in15, #in25, #in35, #in45, #in55, #in65, #in75, #in85,
+#in08, #in18, #in28, #in38, #in48, #in58, #in68, #in78, #in88
+{
+	border-right:none;
+}
+
+#in20, #in21, #in22, #in23, #in24, #in25, #in26, #in27, #in28,
+#in50, #in51, #in52, #in53, #in54, #in55, #in56, #in57, #in58,
+#in80, #in81, #in82, #in83, #in84, #in85, #in86, #in87, #in88
+{
+	border-bottom:none;
 }

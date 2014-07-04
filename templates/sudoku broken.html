@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Cory's Sudoku Page</title>
+        <link type="text/css" rel="stylesheet" href="/static/main.css" />
+        <link type="text/css" rel="stylesheet" href="/static/sudoku.css" />
+        <script type="text/javascript" src="../static/sudoku.js"></script>
+        <script lang="JavaScript">
+            var puzzle_solution = '{{puzzle_solution}}'
+            var puzzle = '{{puzzle}}'
+            var puzzle_level = '{{level}}'
+        </script>
+    </head>
+    <body>
+        <div class="login-area">
+            {% if user and user != 'base' %}
+                {{user}}(<a class="login-link" href="/logout">logout</a>)
+            {% else %}
+                <a class="login-link" href="/login">login</a>
+                |
+                <a class="login-link" href="/signup">signup</a>
+        {% endif %}
+        </div>
+        <div id="header">
+            <div id="navbar">
+                <ul id="tabs">
+                    <li class="tabs"><a href="/">Home</a></li>
+                    <li class="tabs"><a href="/resume">About Me</a></li>
+                    <li class="tabs"><a href="/optionposition">Option Model</a></li>
+                    <li class="tabs"><a href="/sudoku">Sudoku</a></li>
+                    <li class="tabs"><a href="https://github.com/corylstewart?tab=repositories">Code</a></li>
+                    {% if user == 'admin' %}
+                        <li class="tabs"><a href="/sudoku/makedb">Make Sudoku Database</a></li>
+                        <li class="tabs"><a href="/sudoku/deletedb">Delete Sudoku Database</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <p class="center">
+            {% if level != 'easy' %}<a href="/sudoku?level=easy">Easy</a>{% else %}Easy{% endif %}
+            {% if level != 'medium' %}<a href="/sudoku?level=medium">Medium</a>{% else %}Medium{% endif %}
+            {% if level != 'hard' %}<a href="/sudoku?level=hard">Hard</a>{% else %}Hard{% endif %}           
+            {% if level != 'user' %}<a href="/sudoku?level=user">User Generated</a>{% else %}User Generated{% endif %}            
+        </p>
+        <p class="center">
+            <b><span id="progress_message" style="font-size:133%;">              
+                {%if level == 'user' %}
+                    {% if user_solved == 'true' %}
+                        Here is the solution to your puzzle.
+                    {% elif user_solved == 'not solved' %}
+                        That puzzle was too tough for me. This is as far as I got.
+                    {% elif user_solved == 'not valid' %}
+                        That was not a valid puzzle.
+                    {% else %}
+                        Please enter you puzzle below.
+                    {% endif %}
+                {% else %}
+                    Here is the puzzle. Good luck.
+                {% endif %}              
+            </span></b>
+        </p>
+        <table class="s_table">
+            <tbody>
+            {% for row in cell_html %}
+				<tr>
+	            {% for cell in row %}
+                    <td {{cell.td_class}} {{cell.td_name}} {{cell.td_id}}>
+                        <input {{cell.in_class}} size="2" autocomplete="off" {{cell.in_type}} {{cell.in_name}} {{cell.in_id}} />
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <p class="center">
+        {% if level != 'user' %}           
+            <input name="check_btn" type="submit" value="Check Progress" onclick="check_progress()" />
+            <input name="'show_error_btn" type="submit" value="Show Errors" onclick="show_errors()" />
+            <input name="clear_btn" type="submit" value="Clear Board" onclick="clear_board()" />
+            <input name="new_puzzle_btn" type="submit" value="New Puzzle" onclick="get_new_puzzle()" />
+            <input name="show_solution_btn" type="submit" value="Show Solution" onclick="show_solution()" />
+        {% else %}
+            <input name="solve_btn" type="submit" value="Solve Puzzle" onclick="solve_puzzle()" />
+            <input name="clear_btn" type="submit" value="Clear Board" onclick="clear_blank_board()"/>
+            <input name="puzzle_string_btn" type="submit" value="Enter Puzzle as String" onclick="enter_puzzle_as_string()" />
+        {% endif %}
+        </p>
+        <form method="post" id="user_puzzle_form"><input name="user_puzzle_input_name" id="user_puzzle_input_id" type=hidden value=""/></form>
+    </body>
+
+</html>

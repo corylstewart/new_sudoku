@@ -1,0 +1,82 @@
+body
+{
+    position: relative;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    margin: 0 auto;
+    padding: 10px;
+    color: black;
+}
+
+.login-area
+{
+    font-size: 13px;
+    color: gray;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.login-link
+{
+    color: gray;
+    text-decoration: none;
+}
+
+.login-link:visited
+{
+    color: gray;
+}
+
+.login-link:hover
+{
+    text-decoration: underline;
+}
+
+.error
+{
+    color: red;
+}
+
+div.links
+{
+	position:absolute;
+	color:gray;
+	left:10px;
+	top:10px;
+	width:125px;
+}
+
+ul.tabs
+{
+	display:none;
+	list-style:none;
+	text-align:left;
+	background:#f2f2f2;
+	color: #333;
+}
+
+div.links:hover
+{
+	background: #f2f2f2;
+	color: #333;
+}
+
+div.links:hover ul.tabs
+{
+	display:block;
+}
+
+ul.tabs a
+{
+	text-decoration: none;
+}
+
+li.tabs:hover
+{
+	color: #fff;
+	background: #939393;
+}
+
+
+

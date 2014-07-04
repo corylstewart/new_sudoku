@@ -72,7 +72,6 @@ class SolvePuzzle(BlankBoard):
             return False
         return self._apply_true_false(self._valid_count)
 
-
     def valid_group(self,group):
         for i in xrange(1,10):
             if group.count(i) > 1:
@@ -193,28 +192,7 @@ class SolvePuzzle(BlankBoard):
             for cell in row:
                 self.solution_string += str(self.board.board[cell])
 
-
-##############################################################
-#should be safe to remove
-    def _rank_difficulty(self, f, level,layer):
-        old = None
-        if self.difficulty < level:
-            old = copy.deepcopy(self.board.board_with_lists)
-        f(layer)
-        if old and old <> self.board.board_with_lists:
-            self.difficulty = level
-
-    def old_solve_puzzle(self):
-        for i in range(100):
-            for i,layer in enumerate(self.layers):
-                self._rank_difficulty(self._apply_maniputlation,i+1,layer)
-            if self.is_solved():
-                self._make_solution_string()
-                break
-#end safe to remove
-################################################
-
-    def solve_puzzle(self):
+    def solve_puzzle(self, use_bf=True):
         for i in range(1,len(self.layers)):
             if self.is_solved():
                 break
@@ -224,41 +202,37 @@ class SolvePuzzle(BlankBoard):
                 old = copy.deepcopy(self.board.board_with_lists)
                 for layer in self.layers[:i+1]:
                     self._apply_maniputlation(layer)
+        if not self.is_solved() and use_bf:
+            self._make_solution_string()
+            self.use_brute_force()
 
+    def use_brute_force(self):
+        if self.solution_string:
+            puzzle = self.solution_string
+        else:
+            puzzle = self.grid_str
+        puzzle = [int(x) for x in puzzle]
+        solution = ''.join([str(x) for x in self.brute_force(puzzle)])
+        self._fix_brute_force(solution)
 
-   
-with open('sudoku_old.txt') as f:
-    count = 0
-    start = time.time()
-    for line in f.readlines():
-        puzzle = line.split()
-        count += 1
-        a = SolvePuzzle(puzzle[1])
-        a.solve_puzzle()
-        print a.is_solved(), a.difficulty
-        if not a.is_solved():
-            print 'nope'
-            raw_input()
-        if count%100 == 0:
-            print count
-    print time.time()-start
+    def brute_force(self, puzzle):
+        if puzzle.count(0) == 0:
+            return puzzle
+        i = puzzle.index(0)
+        c = [puzzle[j] for j in range(81)
+             if not ((i-j)%9 * (i//9^j//9) * (i//27^j//27 | (i%9//3^j%9//3)))]
 
+        for v in range(1, 10):
+            if v not in c:
+                r = self.brute_force(puzzle[:i]+[v]+puzzle[i+1:])
+                if r is not None:
+                    return r
 
-
- 
-
-
-class CreateNewPuzzle:
-    
-    #This is a valid full grid for use in creating new puzzles
-    base_grid = [[1,7,4,2,8,5,3,9,6],
-                      [3,9,6,4,1,7,5,2,8],
-                      [8,5,2,9,6,3,1,7,4],
-                      [4,1,7,5,2,8,6,3,9],
-                      [6,3,9,7,4,1,8,5,2],
-                      [2,8,5,3,9,6,4,1,7],
-                      [7,4,1,8,5,2,9,6,3],
-                      [9,6,3,1,7,4,2,8,5],
-                      [5,2,8,6,3,9,7,4,1]]
-
-
+    def _fix_brute_force(self, solution):
+        temp_puzzle = self.grid_str
+        self.grid_str = solution
+        self._read_grid()
+        self.board.board_with_lists = self._place_lists()
+        self.solution_string = solution
+        self.grid_str = temp_puzzle
+        self.difficulty = 100

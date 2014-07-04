@@ -4,63 +4,51 @@
 <br>
 <br>
 
-Welcome to my demo site.  Here are the projects that I am working on.
+Welcome to my demo site.  The old sight is still up and running and are located <a href=http://coryoptionpage.appspot.com>here</a>.
+Those pages were built before I started to try to learn JavaScript.  While they were good practice on building more of the back
+end, they only served up static web-pages.  So here are my attempts to bring the pages a little more life.
 
 <h1>Option Model</h1>
 <ol>
     <li><h3>Purpose</h3></li>
     <ul>
-        <li>Build a webapp that can be used to accurately model an equity option position and all of its greeks.</li>
+        <li>Build a web-app that can be used to accurately model an equity option position and all of its greeks.</li>
     </ul>
     <li><h3>Goals</h3></li>
     <ul>
-        <li>Create a database of greeks that can be quickly retrieved using a description of the desired option.</li>
-        <li>Practice precaching objects in memcache to both lower the hits on the DB and increase response times.</li>
-        <li>Create a streaming webapp that uses a range of cached values to create a real time option position.</li>
+        <li>Create a streaming web-app that uses a range of cached values to create a real time option position.</li>
+        <li>Use a database to store users positions.</li>
+        <li>Provide analytics to show how a position/book would perform in different market conditions.</li>
     </ul>
-    <li><h3>Features</h3></li>
+    <li><h3>Features so far</h3></li>
     <ul>
-        <li>Ability to store values of greeks in the database for quick retrieval.</li>
-        <li>If user is logged in they can create a number of positions for themselves that are stored in the DB.</li>
+        <li>Database containing all of a users positions.  If the user is not logged in they will have access to the guest account.</li>
+        <li>Although I would like to use real time/delayed market data I feel that it would be a violation of user agreements.
+            So I give the user the most current stock price.  From there the user can change the price by hand or use a very
+            simple random stock move generator to see the positions move in "real time".
+        </li>
+        <li>The model that I am using is a very simple Black Scholes implementation.  This has many drawbacks the most important
+            of which is that you cannot model dividend paying stocks accurately.  Until I come up with a JavaScript model for
+            something better that is going to be a huge limitation.
+        </li>
     </ul>  
-    <li><h3>Limitations</h3></li>
+    <li><h3>Future improvements</h3></li>
     <ul>
         <li>
-            Although Google is very generous with its DB read and write operations an application that is a data demanding
-            as an option pricer the limitations make it very difficult to deploy more than a few instances using the DB.
+            I would like to show P&L graphs for single stocks in a variety of market scenarios.
         </li>
         <li>
-            Since precalculating and storing a large number of option greeks is difficult, the response times to initial calculations
-            is very slow.  However once a range of values has been calculated and stored in memcache the response times are quite good.
+            Also, I would like to add an overall book view providing the user all of the greeks from all of the positions in real time.
         </li>
         <li>
-            Since going from a local server to running on Google's server I have been running into occasional timeouts that I had not been experiencing
-            on my local machine.  Have worked around a couple of the bugs but am still having some trouble on dividend paying stocks and
-            stocks with lots of strikes.
+            In addition to a book view, I would like to add P&L graphs for the overall book in different market conditions.
         </li>
         <li>I have had to limit the size of the tree substantially both to limit instance use and reduce the timeouts.</li>
         <li>Streaming does not seem like a reasonable option due to the limitations of the system at this time.</li>
-    </ul>
-    <li><h3>Future Improvements</h3></li>
-    <ul>
-        <li>
-            Improve the pricer using Scipy, but until Google adds it to its list of libraries, or I find another library that contains
-            the functions that I need that seems difficult.
-        </li>
         <li>Add a page for viewing and setting skew versus the implied volatility</li>
-        <li>Add a page for viewing the users entire book.</li>
-        <li>
-            Implement the DB so that the only values that would need to be calculated using an option model are the prices.  All of the 
-            other greeks could be calculated by using the difference in prices and their sensitivity  to changing variables. But, that is 
-            not possible using the current Google DB.
+        <li>Find a library or come up with my own implementation of an option pricing model.  At this time that is well out of
+            the scope of my own ideas of what this project is about as well as above my mathematics background.
         </li>
-        <li>Still having occasionally timeouts when calculating greeks.  Need to track those down and handle them better.</li> 
-        <li>
-            Run the webapp on a local machine instead of using GAE.  This would allow me to Read/Write to the database as much
-            as I would like to.  It would also allow me to calculate as many options as I would like because there would be no
-            limit to the number of runtime cycles that I could use.
-        </li>        
-        
     </ul>
 </ol>
 
@@ -88,14 +76,42 @@ Welcome to my demo site.  Here are the projects that I am working on.
     </ul>
     <li><h3>Limitations</h3></li>
     <ul>
-        <li>Some very difficult puzzle are still timing out.  New rules and a better recursive technique would help.</li>
+        <li>Although while using brute force in addition to my algorithms the program will find a solution.  It 
+            won't notice if a grid has more than one solution.
+        </li>
+        <li>I would like to add a few more layers of algorithms so that brute force is less used.</li>
+        <li></li>
     </ul>
     <li><h3>Future Improvements</h3></li>
     <ul>
-        <li>Need to add a few more layers of algorithms so that brute force is only needed for bad grids</li>
-        <li>Figure out a better way to generate more difficult grids.</li>
         <li>Track what puzzles the user has tried and record the times they finished the puzzle in.</li>
-        <li>Rewrite the page so that JavaScript can be used.</li>
+        <li>My old version can generate grids, but I have not implemented that in this version yet.</li>
+        <li>Figure out a better way to generate more difficult grids.</li>
+       
+    </ul>   
+</ol>
+<h1>Other Projects and Goals</h1>
+<ol>
+    <li><h3>Helpful Reminders</h3></li>
+    <ul>
+        <li>Create a website that users can set up reminders of chores that are maintenance related.</li>
+        <li>Users could input a variety of items that they need reminders for.  And the site would e-mail
+            reminders for the user to do them.
+        </li>
+        <li>Examples of the task are to change the oil in their car, the filter in the furnace, or call
+            someone on their birthday.</li>
+        <li>Once the reminder is set the user can log in and set the task to done once it is finished.</li>
+        <li>A possible way to monetize it would be to offer coupons and advertising with the reminders
+            for what ever the task is.
+        </li>
+        <li>A pie in the sky idea would be to have the user put in actual model numbers on items, such as
+            car, appliances.  Using those model numbers come up with actual maintenance scheduling based on
+            user manuals.
+        </li>
+        </ul>
+    <li><h3>CSS and JavaScript</h3></li>
+    <ul>
+        <li>Practice, practice, practice.</li>
     </ul>
 </ol>
 

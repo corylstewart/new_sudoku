@@ -1,0 +1,94 @@
+td, th, tr {
+    padding: 0;
+}
+
+.position_totals, .dividend_table, .option_chain_table {
+    border-collapse: collapse;
+    padding:0;
+    margin:0;
+    border-spacing:0;
+	border: none;
+}
+
+.greeks1, .greeks2, .greeks3, .greeks4, .chain {
+	background-color:#FFBBFF;
+    width:100px;
+    text-align: right;
+	border:solid thin gray;
+}
+
+.greeks2 {
+	background-color:#A5DBEB;
+}
+
+.greeks3 {
+	background-color:#BAD0EF;
+}
+
+.greeks4 {
+    background-color:#BDF4CB;   
+}
+
+.greeks5
+{
+	width: 15px;
+	border:none;
+}
+
+
+.dividends1, .dividends2, .dividends3 {	
+	background-color:#FFBBFF;
+    width:125px;
+    text-align: right;
+	border:solid thin gray;
+}
+
+.dividends2 {
+    background-color:#A5DBEB;   
+}
+
+.dividends3 {
+    background-color:#BAD0EF;   
+}
+
+
+.chain1, .chain2, .chain3, .chain4, .chain5, .chain6, .chain7, .chain8, .chain9, .chain10 {
+    width: 70px;
+	border:solid thin lightblue;
+}
+
+.chain2 {
+    width: 60px;
+}
+
+.chain3 {
+    width: 50px;
+}
+
+.chain4 {
+    width: 40px;
+}
+
+.chain5 {
+    width: 45px;
+}
+
+.chain6 {
+    width: 50px;
+}
+
+.chain7 {
+    width: 60px;
+}
+
+.chain8 {
+    width: 60px;
+}
+
+.chain9 {
+    width: 60px;
+}
+
+.chain10 {
+    width: 45px;
+}

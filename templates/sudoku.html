@@ -1,54 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post" />
-
-<div style="height:50px;width:500px;margin:0 auto;margin-top:50px">
-    <h2>
-        <ul name="sudoku_levels">
-            <li name="sudoku_level"><a href="/sudoku/levels?level=1">Easy</a></li>
-            <li name="sudoku_level"><a href="/sudoku/levels?level=2">Medium</a></li>
-            <li name="sudoku_level"><a href="/sudoku/levels?level=3">Hard</a></li>
-            <li name="sudoku_level"><a href="/sudoku">User Generated</a></li>
-        </ul>
-    </h2>
-</div>
-
-{% if error or congratulations %}
-    <div style="height:50px;width:500px;margin:0 auto;margin-top:50px">
-        <h2>{{error}}{{congratulations}} {{solve_time}}</h2>
-    </div>
-{% endif %}
-<div style="height:350px;width:325px;margin:0 auto;margin-top:50px">
-    <table name="sudoku_table" cellspacing="0" cellpadding="0">
-    {% for i in range(9) %}
-        <tr>
-        {% for j in range(9) %}
-            <td><input size="2" autocomplete="off" maxlength="1" name="{{grid['name'][i][j]}}" id="{{grid['id'][i][j]}}" {{grid['readonly'][i][j]}} value="{{grid['value'][i][j]}}" style="{{grid['html'][i][j]}}"/></td>
+<link type="text/css" rel="stylesheet" href="/static/sudoku.css" />
+<script type="text/javascript" src="/static/sudoku.js"></script>
+<script lang="JavaScript">
+    var puzzle_solution = '{{puzzle_solution}}'
+    var puzzle = '{{puzzle}}'
+    var puzzle_level = '{{level}}'
+</script>
+<p class="center">
+    {% if level != 'easy' %}<a href="/sudoku?level=easy">Easy</a>{% else %}Easy{% endif %}
+    {% if level != 'medium' %}<a href="/sudoku?level=medium">Medium</a>{% else %}Medium{% endif %}
+    {% if level != 'hard' %}<a href="/sudoku?level=hard">Hard</a>{% else %}Hard{% endif %}           
+    {% if level != 'user' %}<a href="/sudoku?level=user">User Generated</a>{% else %}User Generated{% endif %}            
+</p>
+<p class="center">
+    <b><span id="progress_message" style="font-size:133%;">              
+        {%if level == 'user' %}
+            {% if user_solved == 'true' %}
+                Here is the solution to your puzzle.
+            {% elif user_solved == 'not solved' %}
+                That puzzle was too tough for me. This is as far as I got.
+            {% elif user_solved == 'not valid' %}
+                That was not a valid puzzle.
+            {% else %}
+                Please enter you puzzle below.
+            {% endif %}
+        {% else %}
+            Here is the puzzle. Good luck.
+        {% endif %}              
+    </span></b>
+</p>
+<table class="s_table">
+    <tbody>
+    {% for row in cell_html %}
+		<tr>
+	    {% for cell in row %}
+            <td {{cell.td_class}} {{cell.td_name}} {{cell.td_id}}>
+                <input {{cell.in_class}} size="2" autocomplete="off" {{cell.in_type}} {{cell.in_name}} {{cell.in_id}} />
+            </td>
         {% endfor %}
         </tr>
     {% endfor %}
-    </table>
+    </tbody>
+</table>
 
-    {% if level %}
-        <input type="submit" name="check_btn" value="Check" />
-        <input type="submit" name="clear_btn" value="Clear" />
-        <input type="submit" name="solve_btn" value="Solve" />
-        <input type="submit" name="new_btn" value="New Puzzle" /><br />
-        {% if wrong %}
-            Number wrong {{wrong}}<br />
-        {% endif %}
-        {% if missing %}
-            Number missing {{missing}}<br />
-        {% endif %}
+<p class="center">
+{% if level != 'user' %}           
+    <input name="check_btn" type="submit" value="Check Progress" onclick="check_progress()" />
+    <input name="'show_error_btn" type="submit" value="Show Errors" onclick="show_errors()" />
+    <input name="clear_btn" type="submit" value="Clear Board" onclick="clear_board()" />
+    <input name="new_puzzle_btn" type="submit" value="New Puzzle" onclick="get_new_puzzle()" />
+    <input name="show_solution_btn" type="submit" value="Show Solution" onclick="show_solution()" />
+{% else %}
+    <input name="solve_btn" type="submit" value="Solve Puzzle" onclick="solve_puzzle()" />
+    <input name="clear_btn" type="submit" value="Clear Board" onclick="clear_blank_board()"/>
+    <input name="puzzle_string_btn" type="submit" value="Enter Puzzle as String" onclick="enter_puzzle_as_string()" />
+{% endif %}
+</p>
+<form method="post" id="user_puzzle_form"><input name="user_puzzle_input_name" id="user_puzzle_input_id" type=hidden value=""/></form>
 
-        <input type="hidden" name="solution_string" value="{{solution_string}}" />
-        <input type="hidden" name="grid_string" value="{{grid_string}}" />
-        <input type="hidden" name="level_string" value="{{level}}" />
-        <input type="hidden" name="start_time" value="{{start_time}}" />
-    {% else %}
-        <input type="submit" name="solve_btn" value="solve" />
-        <input type="submit" name="clear_btn" value="clear" />
-        {{difficulty}}
-    {% endif %}
-</div>
 {% endblock %}

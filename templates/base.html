@@ -2,45 +2,42 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="/static/main.css" />
-
   <title>Cory's Demo Page</title>
 </head>
-
-<body>
-    <!-- <div class="main-title"> Welcome to my Demo Page </div> -->
+    
+    <body {% if option_chain %}onload="do_everything()"{% endif %}>   
     
     <div class="login-area">
-        {% if user and user != 'base' %}
+        {% if user %}
         {{user}}(<a class="login-link" href="/logout">logout</a>)
         {% else %}
         <a class="login-link" href="/login">login</a>
         |
         <a class="login-link" href="/signup">signup</a>
         {% endif %}
+    </div><br />
+
+    <div class="links">Links &#9662;        
+        <ul class="tabs">
+            <li class="tabs"><a href="/">Home</a></li>
+            <li class="tabs"><a href="/resume">About Me</a></li>
+            <li class="tabs"><a href="/optionposition">Option Model</a></li>
+            <li class="tabs"><a href="/sudoku">Sudoku</a></li>
+            <li class="tabs"><a href="https://github.com/corylstewart?tab=repositories">Code</a></li>
+            {% if user == 'admin' %}
+                <li class="tabs"><a href="/sudoku/makedb">Make Sudoku Database</a></li>
+                <li class="tabs"><a href="/sudoku/deletedb">Delete Sudoku Database</a></li>
+            {% endif %}
+        </ul>
+
     </div>
 
-    <div id="header">
-        <div id="navbar">
-            <ul id="tabs">
-                <li id="tabs"><a href="/">Home</a></li>
-                <li id="tabs"><a href="/resume">About Me</a></li>
-                <li id="tabs"><a href="/optionposition">Option Model</a></li>
-                <li id="tabs"><a href="/sudoku">Sudoku</a></li>
-                <li id="tabs"><a href="https://github.com/corylstewart?tab=repositories">Code</a></li>
-                {% if user == 'admin' %}
-                    <li id="tabs"><a href="/sudoku/db">Sudoku Database</a></li>
-                    <li id="tabs"><a href="/optiondatabase">Option Database</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
 
   <div id="content">
   {% block content %}
   {% endblock %}
   </div>
 </body>
-
 </html>
 
 
