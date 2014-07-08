@@ -28,6 +28,14 @@ class EnhancedHandler(webapp2.RedirectHandler):
             self.arg_dict['user'] = self.user 
         else:
             self.user = 'guest'
+        self.arg_dict['locations'] = ['None', 'Dining Room', 'Garage', 'Kitchen', 
+                                      'Large Guest', 'Living Room', 'Master BR', 
+                                      'Office', 'Small Guest', 'TV Room']
+        self.arg_dict['mediums'] = ['None', 'Carving', 'Painting', 'Rug', 
+                                    'Statue', 'Vase', 'Wall Hanging']
+        self.arg_dict['valuation_type'] = ["Estimated", "Appraised"]
+        self.arg_dict['sort_by'] = ['Artist', 'Created', 'Created Reverse', 
+                                    'Location', 'Title', 'Value', 'Value Reverse']
         
 
 

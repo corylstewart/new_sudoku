@@ -10,6 +10,54 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: artist
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: created
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: created
+    direction: desc
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: location
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: medium
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: medium
+    direction: desc
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: title
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: value
+
+- kind: ArtWork
+  properties:
+  - name: user
+  - name: value
+    direction: desc
+
 - kind: Positions
   properties:
   - name: stock
