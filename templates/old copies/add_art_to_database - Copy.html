@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="{{upload_url}}" method="post" enctype="multipart/form-data">
+    Title: <input value="{{piece_title}}" name="piece_title" class="art_desc">{{title_error}}<br />
+    Artist: <input value="{{piece_artist}}" name="piece_artist" class="art_desc"><br />
+    Location: <input value="{{piece_location}}" name="piece_location" class="art_desc"><br />
+    Medium: <input value="{{piece_medium}}" name="piece_medium" class="art_desc"><br />
+    Purchase Date: <input value="{{piece_purchase_date}}" name="piece_purchase_date" class="art_desc"><br />
+    Purchase Price: <input value="{{piece_purchase_price}}" name="piece_purchase_price" class="art_desc"><br />
+    <div><label>Photo:</label></div>
+    <div><input type="file" name="file_to_upload" /></div>
+    <input type="submit" value="Save Information">
+
+</form>
+
+
+{% endblock %}

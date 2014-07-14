@@ -26,7 +26,10 @@ from users import user_handler as UH
 from options import option_handler as OH
 from options import option_memcache as OM
 from art_collection import art_collection_handler as AC
+<<<<<<< HEAD
 from art_collection import gql_to_spreadsheet as ACS
+=======
+>>>>>>> origin/master
 
 
 class MainHandler(EH.EnhancedHandler):
@@ -57,7 +60,11 @@ app = webapp2.WSGIApplication([
     ('/serve/([^/]+)?', AC.ImgHandler),
     ('/thumb/([^/]+)?', AC.ThumbHandler),
     ('/scaled/([^/]+)?', AC.ScaledHandler),
+<<<<<<< HEAD
     ('/edit/([^/]+)?', AC.PieceEditHandler),
     ('/artcollection/spreadsheet', ACS.GqlToSpreadsheet)
+=======
+    ('/edit/([^/]+)?', AC.PieceEditHandler)
+>>>>>>> origin/master
 
 ], debug=True)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends "base.html" %}
 {% block content %}
 <style type="text/css">
@@ -81,4 +82,89 @@
 
 
 </form>
+=======
+{% extends "base.html" %}
+{% block content %}
+<style type="text/css">
+    .piece_data_frame
+    {
+        height:200px;
+        width:350px;
+        float:left;
+        border: 1px solid;
+        border-color:blue;
+        background-color:lightblue;
+    }
+
+    .photo_in_frame
+    {
+        float: left;
+    }
+
+    .piece_info_frame
+    {
+        float: left;
+        font-size:14px;
+        width:auto;
+    }
+
+    label
+    {
+        font-weight: bold;
+    }
+
+</style>
+
+
+<form method="post">
+    <div><label>Location: </label>
+        <select name="piece_location" id="select_location">
+            <option value ="All" selected>All</option>
+            {% for location in locations %}
+                <option value ="{{location}}" {% if piece_location == location %} selected {% endif %}>{{location}}</option>
+            {% endfor %}
+        </select>
+    </div> 
+
+    <div><label>Medium: </label>
+        <select name="piece_medium" id="select_medium">
+            <option value ="All" selected>All</option>
+            {% for medium in mediums %}
+                <option value="{{medium}}" {% if piece_medium == medium %} selected {% endif %}>{{medium}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div><label>Sort By: </label>
+        <select name="piece_sorting" id="select_sorting">
+            <option value ="None" selected>None</option>
+            {% for sort_kind in sort_by %}
+                <option value="{{sort_kind}}" {% if piece_sorting == sort_kind %} selected {% endif %}>{{sort_kind}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div><input type="submit" value="Search" name="search_submit" /> </div>
+
+
+    {% for work in art_works %}
+    <div class="piece_data_frame">
+        <span class="photo_in_fram">
+            <a href="/edit/{{work.key.id()}}"><img src="/thumb/{{work.key.id()}}" align="left" /></a>
+        </span>
+        <span class="piece_info_fram">
+            <label>Title: </label>{{work.title}}<br />
+            <label>Artist: </label>{{work.artist}}<br />
+            <label>Location: </label>{{work.location}}<br />
+            <label>Value: </label>{{work.value}}<br />
+        </span>
+
+    </div>
+    {% endfor %}
+    </body>
+
+
+
+</form>
+>>>>>>> origin/master
 {% endblock %}
