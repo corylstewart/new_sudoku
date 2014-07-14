@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style type="text/css">
+    .error_class
+    {
+        color: red;
+    }
+
+</style>
+
+<script>
+    function clear_form() {
+        document.getElementById('piece_title').value = '';
+        document.getElementById('piece_artist').value = '';
+        document.getElementById('piece_purchase_date').value = '';
+        document.getElementById('piece_purchase_price').value = '';
+        document.getElementById('piece_value').value = '';
+        document.getElementById('piece_app').value = '';
+        document.getElementById('piece_description').value = 'Enter description here.';
+        document.getElementById("select_location").selectedIndex = 0;
+        document.getElementById("select_medium").selectedIndex = 0;
+        document.getElementById("select_app").selectedIndex = 0;
+
+    }
+</script>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div><h3>{{success_message}}</h3></div>
+
+    {% if work %}
+    <div><img src="/scaled/{{work.key.id()}}" /></div>
+    <input value="{{work.key.id()}}" name="hidden_key" hidden="hidden" />
+    {% endif %}
+
+    <div>
+        <label>Title: </label>
+        <input value="{{piece_title}}" name="piece_title" id="piece_title" class="art_desc" autocomplete="off">
+        <span class="error_class">{{title_error}}</span></div>
+
+    <div><label>Artist: </label><input value="{{piece_artist}}" name="piece_artist" id="piece_artist" class="art_desc"></div>
+
+    <div><label>Location: </label>
+        <select name="piece_location" id="select_location">
+            {% for location in locations %}
+                <option value ="{{location}}" {% if piece_location == location %} selected {% endif %}>{{location}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div><label>Medium: </label>
+        <select name="piece_medium" id="select_medium">
+            {% for medium in mediums %}
+                <option value="{{medium}}" {% if piece_medium == medium %} selected {% endif %}>{{medium}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label>Purchase Price: </label><input value="{{piece_purchase_price}}" name="piece_purchase_price" id="piece_purchase_price" class="art_desc">
+        <span class="error_class">{{purchase_price_error}}</span></div>
+    </div>
+
+    <div><label>Value: </label><input value="{{piece_value}}" name="piece_value" id="piece_value" class="art_desc" autocomplete="off" />
+        <select name="piece_value_app" id="select_app">
+            {% for app in valuation_type %}
+                <option value="{{app}}" {% if piece_value_app == app %} selected {% endif %}>{{app}}</option>
+            {% endfor %}
+        </select>
+        <span class="error_class">{{price_error}}</span></div>
+    </div>
+
+    <div><label>Appraised By: </label><input value="{{piece_app}}" name="piece_app" id="piece_app" /></div>
+
+    <div>
+        <label>Photo:</label><input type="file" name="file_to_upload" />
+        <span class="error_class">{{file_error}}</span></div>
+    </div>
+
+    <div>
+        <textarea name="piece_description" id="piece_description" rows="10" cols="50">{% if piece_description %}{{piece_description}}{% else %}Enter description here.{% endif %}</textarea>
+    </div>
+
+    <div>
+        <input type="submit" name="save_btn" value="Save Information">
+        <input type="button" value="Clear Form" onclick='clear_form()'>
+    </div>
+
+</form>
+
+
+{% endblock %}

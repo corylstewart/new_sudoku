@@ -1,5 +1,6 @@
 from users import user_db as UDB
 from EnhancedHandler import EnhancedHandler as EH
+from my_email_classes import email_sender as EMS
 
 class SignUpHandler(EH.EnhancedHandler):
     def get(self):
@@ -41,7 +42,9 @@ class SignUpHandler(EH.EnhancedHandler):
                 self.pw_hash = UDB.SecureValue().make_pw_hash(self.user_name, self.password)
                 UDB.User().register(self.user_name, self.pw_hash, self.email)
                 self.login(self.user_name)
+                EMS.AdminAlertEmail().send_new_user_email()   #####this is the new line to send an email 7/9/2014
                 self.redirect('/')
+                
 
 
 class LoginHandler(EH.EnhancedHandler):

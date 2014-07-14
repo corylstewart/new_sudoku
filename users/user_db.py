@@ -8,6 +8,7 @@ import secret
 from google.appengine.ext import ndb
 
 class User(ndb.Model):
+    '''ndb object that contains the properties of a user'''
     user_name = ndb.StringProperty(required=True)
     pw_hash = ndb.StringProperty(required=True)
     email = ndb.StringProperty()

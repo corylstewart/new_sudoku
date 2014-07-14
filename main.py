@@ -18,12 +18,15 @@ import webapp2
 import sys
 import jinja2
 import re
+import os
 
 from EnhancedHandler import EnhancedHandler as EH
 from sudoku import sudoku_handler as SH
 from users import user_handler as UH
 from options import option_handler as OH
 from options import option_memcache as OM
+from art_collection import art_collection_handler as AC
+from art_collection import gql_to_spreadsheet as ACS
 
 
 class MainHandler(EH.EnhancedHandler):
@@ -34,17 +37,9 @@ class ResumeHandler(EH.EnhancedHandler):
     def get(self):
         self.render('resume.html',  **self.arg_dict)
 
-class Play(EH.EnhancedHandler):
-    def get(self):
-        optionable = OM.OptionsMemcache().get_optionable_list()
-        self.write(optionable)
-        self.write('done')
-
-class StockHandler(EH.EnhancedHandler):
-    def get(self):
-        self.write('<script src="//www.gmodules.com/ig/ifr?url=http://hosting.gmodules.com/ig/gadgets/file/102972771291788536078/google-finance-yahoo-stock-ticker.xml&amp;synd=open&amp;w=320&amp;h=200&amp;title=&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>')
 
 PAGE_RE = r'((/(?:[a-zA-Z0-9_-]+/?)*))?'
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -53,10 +48,16 @@ app = webapp2.WSGIApplication([
     ('/sudoku/makedb', SH.CreateDB),
     ('/sudoku/get', SH.GetPuzzle),
     ('/sudoku/deletedb', SH.ClearDB),
-    ('/stock', StockHandler),
     ('/signup', UH.SignUpHandler),
     ('/login', UH.LoginHandler),
     ('/logout', UH.LogoutHandler),
     ('/optionposition', OH.OptionPageHandler),
-    ('/play', Play)
+    ('/artcollection/add_art', AC.AddToDatabaseHandler),
+    ('/artcollection/collection', AC.CollectionHandler),
+    ('/serve/([^/]+)?', AC.ImgHandler),
+    ('/thumb/([^/]+)?', AC.ThumbHandler),
+    ('/scaled/([^/]+)?', AC.ScaledHandler),
+    ('/edit/([^/]+)?', AC.PieceEditHandler),
+    ('/artcollection/spreadsheet', ACS.GqlToSpreadsheet)
+
 ], debug=True)

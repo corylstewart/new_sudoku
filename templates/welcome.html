@@ -90,6 +90,70 @@ end, they only served up static web-pages.  So here are my attempts to bring the
        
     </ul>   
 </ol>
+
+<h1>Art Collection</h1>
+<ol>
+    <li><h3>Purpose</h3></li>
+    <ul>
+        <li>Create a easy way for my father-in-law to track his art collection.</li>
+        <li>This project is still a work in progress changes are being made daily.</li>
+    </ul>
+    <li><h3>Goals</h3></li>
+    <ul>
+        <li>Have simple form for entering information about artwork.</li>
+        <li>Have a simple way to view the collection using different queries.</li>
+        <li>Be able to create reports for export to Excell or MS Access.</li>
+        <li>Send emails to my brother-in-law so that he can track progress.</li>
+    </ul>
+    <li><h3>Features</h3></li>
+    <ul>
+        <li>I have built the database and the forms for entering information.</li>
+        <li>
+            Viewing gallery is now searchable by location and medium.  Sorting is
+            available on a number of indexes.
+        </li>
+        <li>
+            Personal galleries are only viewable while logged in.  When logged in
+            as a guest you see the guest gallery.
+        </li>
+        <li>
+            Art work information is now editable.  From the viewing gallery
+            click on an image to get to the edit page.
+        </li>
+        <li>Able to resize images so that the file size fits within a BlobProperty.</li>
+        <li>Seems like I am catching the errors if no file is selected.</li>
+        <li>
+            I have set up an email notification system.  I receive alerts when a user
+            sets up an account, and adds photos.  I will set it up so that my
+            brother-in-law will gets reports when my father-in-law adds a new piece to
+            his collection.
+        </li>
+        <li>
+            Reports can be generated and uploaded to a Google Drive account. The photos
+            are stored as individual documents, and there is a master spreadsheet
+            containing all of the information about the art.
+        </li>
+    </ul>
+    <li><h3>Future Improvements</h3></li>
+    <ul>
+        <li>Figure out what fields are necessary and which are not.</li>
+        <li>
+            Need to fix the spreadsheet generator so that it does a batch change
+            rather then inserting each row.
+        </li>
+        <li>Would like to set up a task queue for generating the reports.</li>
+        <li>Would like the viewing gallery to look a little nicer.  Playing
+            with the layout would be nice.  But want to nail down the fields
+            before I attempt that.
+        </li>
+        <li>
+            Would be nice to set up the gallery view so that I only
+            hit the DB once, and handle all of the sorting and filtering
+            with javascript.
+        </li>
+    </ul>
+</ol>
+
 <h1>Other Projects and Goals</h1>
 <ol>
     <li><h3>Helpful Reminders</h3></li>
